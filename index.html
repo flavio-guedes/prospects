@@ -46,42 +46,43 @@
   h1 { margin: 10px 0 6px; font-size: 28px; font-weight: 700; letter-spacing: .2px; }
   .subtitle { margin: 0; color: #e5e7eb; font-size: 15px; max-width: 760px; line-height: 1.55; }
 
-  .tabs {
-    display: flex; gap: 8px; flex-wrap: wrap; margin-top: 18px;
+  .front { margin-top: 18px; }
+  .front-header {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    padding: 12px 14px; border-radius: 14px; border: 1px solid var(--border); background: var(--surface); backdrop-filter: blur(14px); cursor: pointer;
   }
-  .tab {
-    padding: 8px 10px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font-size: 13px; cursor: pointer; backdrop-filter: blur(14px); transition: background .15s ease, border-color .15s ease;
+  .front-header h2 { margin: 0; font-size: 15px; font-weight: 700; }
+  .front-header .chevron { color: var(--muted); font-size: 12px; transition: transform .15s ease; }
+  .front.open .front-header .chevron { transform: rotate(180deg); }
+  .front-body {
+    margin-top: 10px; padding: 12px; border-radius: 16px; border: 1px solid var(--border); background: rgba(15,23,42,.55); backdrop-filter: blur(14px); display: none;
   }
-  .tab:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.18); }
-  .tab.active { background: rgba(16,185,129,.15); border-color: rgba(16,185,129,.35); color: #d1fae5; font-weight: 700; }
+  .front.open .front-body { display: block; }
 
-  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 14px; }
-  @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
-  .card {
-    background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 18px; backdrop-filter: blur(14px); display: flex; flex-direction: column; gap: 10px; position: relative; overflow: hidden; transition: transform .08s ease, border-color .2s ease;
+  .subfront { margin-top: 12px; }
+  .subfront-header {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    padding: 10px 12px; border-radius: 12px; border: 1px solid var(--border); background: rgba(255,255,255,0.04); cursor: pointer;
   }
-  .card:hover { transform: translateY(-1px); border-color: rgba(255,255,255,0.14); }
-  .card::after {
-    content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: var(--grad-2);
+  .subfront-header h3 { margin: 0; font-size: 14px; font-weight: 600; }
+  .subfront-header .chevron { color: var(--muted); font-size: 12px; transition: transform .15s ease; }
+  .subfront.open .subfront-header .chevron { transform: rotate(180deg); }
+  .subfront-body {
+    margin-top: 8px; padding: 10px; border-radius: 14px; border: 1px solid var(--border); background: rgba(15,23,42,.45); display: none;
   }
-  .card h3 { margin: 0; font-size: 15px; font-weight: 600; }
-  .card p { margin: 0; color: #cbd5e1; font-size: 14px; line-height: 1.55; }
-  .tag {
-    display: inline-flex; padding: 4px 8px; border-radius: 999px; font-size: 11px; font-weight: 700; background: rgba(59,130,246,.12); color: #bfdbfe; border: 1px solid rgba(59,130,246,.25); width: fit-content;
-  }
-  .actions { margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap; }
-  .btn-sm {
-    padding: 7px 10px; border-radius: 10px; border: 1px solid var(--border); background: rgba(255,255,255,0.08); color: var(--text); text-decoration: none; font-size: 12px; backdrop-filter: blur(10px); transition: background .15s ease, border-color .15s ease;
-  }
-  .btn-sm:hover { background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.18); }
-  .btn-sm.primary { background: rgba(16,185,129,.15); color: #d1fae5; border-color: rgba(16,185,129,.3); }
-  .btn-sm.primary:hover { background: rgba(16,185,129,.22); }
+  .subfront.open .subfront-body { display: block; }
 
-  .message-box {
-    margin-top: 8px; padding: 10px; border-radius: 12px; background: rgba(15,23,42,.6); border: 1px solid var(--border); color: #cbd5e1; font-size: 12px; line-height: 1.5;
+  .row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; align-items: center; }
+  .label { color: var(--muted); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; min-width: 90px; }
+  .link {
+    padding: 7px 10px; border-radius: 10px; border: 1px solid var(--border); background: rgba(255,255,255,0.08); color: var(--text); text-decoration: none; font-size: 12px; backdrop-filter: blur(10px);
   }
-  .message-box textarea {
-    width: 100%; min-height: 100px; background: transparent; border: 1px solid var(--border); border-radius: 10px; color: var(--text); padding: 10px; font-size: 12px; resize: vertical; outline: none;
+  .link.primary { background: rgba(16,185,129,.15); color: #d1fae5; border-color: rgba(16,185,129,.3); }
+
+  .block { margin-top: 10px; }
+  .block h4 { margin: 0 0 6px; font-size: 12px; color: #cbd5e1; font-weight: 700; }
+  .block textarea {
+    width: 100%; min-height: 110px; background: rgba(15,23,42,.55); border: 1px solid var(--border); border-radius: 12px; color: var(--text); padding: 10px; font-size: 12px; resize: vertical; outline: none;
   }
 
   footer { margin-top: 34px; color: var(--muted); font-size: 13px; text-align: center; padding-bottom: 10px; }
@@ -91,30 +92,28 @@
 <div class="container">
   <div>
     <div class="brand">Central de Prospecção</div>
-    <h1>Cases e mensagens prontas</h1>
-    <div class="subtitle">Use os scripts por frente e segmento. Copie, cole e personalize antes de enviar.</div>
+    <h1>Links, fluxos e mensagens por frente</h1>
+    <div class="subtitle">Abra cada frente e subfrente para ver os links, o fluxo, a mensagem inicial e o follow-up.</div>
   </div>
 
-  <div class="tabs">
-    <button class="tab active" onclick="showTab('marketing')">Marketing</button>
-    <button class="tab" onclick="showTab('ia')">IA</button>
-    <button class="tab" onclick="showTab('produto')">Produto</button>
-    <button class="tab" onclick="showTab('customer-success')">Customer Success</button>
-  </div>
-
-  <div id="tab-marketing" class="tab-content">
-    <div class="section">
+  <div class="front">
+    <div class="front-header" onclick="toggleFront(this)">
       <h2>Marketing</h2>
-      <div class="grid">
-        <div class="card">
-          <div class="tag">Freela / Vaga</div>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="front-body">
+      <div class="subfront">
+        <div class="subfront-header" onclick="toggleSubfront(this)">
           <h3>Campanhas</h3>
-          <p>Cases de campanha digital, social media e performance.</p>
-          <div class="actions">
-            <a class="btn-sm primary" href="https://drive.google.com/drive/folders/1shLgZ_Pc5mSbQ3ryPZWlqcpNaTaQijAA" target="_blank">Abrir no Drive</a>
-          </div>
-          <div class="message-box">
-            <textarea readonly>Oi, tudo bem?
+          <span class="chevron">▼</span>
+        </div>
+        <div class="subfront-body">
+          <div class="row"><span class="label">Links</span><a class="link primary" href="https://drive.google.com/drive/folders/1shLgZ_Pc5mSbQ3ryPZWlqcpNaTaQijAA" target="_blank">Drive</a><a class="link" href="https://flavio-guedes.github.io/portfolio/designhead.html" target="_blank">Portfólio</a></div>
+          <div class="block"><h4>Fluxo</h4><textarea readonly>1. Abordagem inicial como parceiro estratégico
+2. Apresentação do case no Drive
+3. Proposta de conversa curta para entender desafios de marketing/crescimento
+4. Follow-up com sugestão prática alinhada ao cenário</textarea></div>
+          <div class="block"><h4>Mensagem inicial</h4><textarea readonly>Oi, tudo bem?
 
 Estou me aproximando de empresas que queiram fortalecer a presença digital, a comunicação com o público e o desempenho das campanhas.
 
@@ -122,293 +121,340 @@ Meu foco não é fornecer um serviço pontual, mas atuar como parceiro estratég
 
 Acredito que o melhor resultado aparece quando entendo o cenário do parceiro, seus desafios de marketing e crescimento, e ajudo a construir ações práticas que gerem engajamento, desempenho e escala.
 
-Estou aberto a parcerias e colaborações, especialmente com empresas que queiram evoluir a operação de marketing de forma estruturada.
-
 Fiquei curioso para entender melhor o que vocês estão buscando e quais são hoje os principais desafios relacionados a marketing e desempenho.
 
-Dependendo do cenário, posso contribuir na construção de campanhas, planejamento, estruturação de conteúdo e identificação de oportunidades de crescimento.
-
 Meu portfólio:
-https://drive.google.com/drive/folders/1shLgZ_Pc5mSbQ3ryPZWlqcpNaTaQijAA
+https://flavio-guedes.github.io/portfolio/designhead.html
 
-Flávio</textarea>
-          </div>
+Flávio</textarea></div>
+          <div class="block"><h4>Follow-up</h4><textarea readonly>Oi, tudo bem?
+
+Vi que você movimentou o link e fiquei curioso: qual parte do case mais se aproxima do desafio que vocês têm hoje?
+
+Se fizer sentido, podemos marcar uma conversa curta para eu entender melhor o cenário e sugerir um caminho inicial simples de execução.
+
+Flávio</textarea></div>
         </div>
-        <div class="card">
-          <div class="tag">Freela / Vaga</div>
+      </div>
+
+      <div class="subfront">
+        <div class="subfront-header" onclick="toggleSubfront(this)">
           <h3>Conteúdo</h3>
-          <p>Conteúdo para blogs, roteiros, e-books e newsletters.</p>
-          <div class="actions">
-            <a class="btn-sm primary" href="https://drive.google.com/drive/folders/1v2caf4wXROVJ_zy5PQ6RZw5BF1UQF1yn" target="_blank">Abrir no Drive</a>
-          </div>
-          <div class="message-box">
-            <textarea readonly>Oi, tudo bem?
+          <span class="chevron">▼</span>
+        </div>
+        <div class="subfront-body">
+          <div class="row"><span class="label">Links</span><a class="link primary" href="https://drive.google.com/drive/folders/1v2caf4wXROVJ_zy5PQ6RZw5BF1UQF1yn" target="_blank">Drive</a><a class="link" href="https://flavio-guedes.github.io/portfolio/designhead.html" target="_blank">Portfólio</a></div>
+          <div class="block"><h4>Fluxo</h4><textarea readonly>1. Abordagem inicial como parceiro estratégico
+2. Apresentação do case no Drive
+3. Proposta de conversa curta para entender desafios de conteúdo/comunicação
+4. Follow-up com sugestão de pauta, canal ou formato</textarea></div>
+          <div class="block"><h4>Mensagem inicial</h4><textarea readonly>Oi, tudo bem?
 
 Estou me aproximando de empresas que queiram fortalecer a comunicação, o posicionamento e a conexão com o público por meio de conteúdo.
 
 Meu foco não é fornecer um serviço pontual, mas atuar como parceiro estratégico, ajudando a conectar narrativa, SEO, jornada do usuário e distribuição para construir presença e relevância de forma contínua.
 
-Acredito que o melhor resultado aparece quando entendo o cenário do parceiro, seus desafios de comunicação e conteúdo, e ajudo a estruturar pautas, canais e mensagens que gerem engajamento e crescimento.
-
-Estou aberto a parcerias e colaborações, especialmente com empresas que queiram evoluir a operação de conteúdo de forma estratégica.
-
 Fiquei curioso para entender melhor o que vocês estão buscando e quais são hoje os principais desafios relacionados a conteúdo e comunicação.
 
-Dependendo do cenário, posso contribuir na produção de conteúdo, planejamento editorial, estruturação de narrativas e identificação de oportunidades de crescimento.
-
 Meu portfólio:
-https://drive.google.com/drive/folders/1v2caf4wXROVJ_zy5PQ6RZw5BF1UQF1yn
+https://flavio-guedes.github.io/portfolio/designhead.html
 
-Flávio</textarea>
-          </div>
+Flávio</textarea></div>
+          <div class="block"><h4>Follow-up</h4><textarea readonly>Oi, tudo bem?
+
+Vi que você movimentou o link e fiquei curioso: qual desafio de conteúdo está mais pesado hoje — pauta, canal, tom ou distribuição?
+
+Se fizer sentido, podemos conversar por alguns minutos para eu sugerir um caminho inicial prático.
+
+Flávio</textarea></div>
         </div>
-        <div class="card">
-          <div class="tag">Freela / Vaga</div>
+      </div>
+
+      <div class="subfront">
+        <div class="subfront-header" onclick="toggleSubfront(this)">
           <h3>Gestão de Marketing</h3>
-          <p>Planejamento, funil, métricas, OKRs e operação de marketing.</p>
-          <div class="actions">
-            <a class="btn-sm primary" href="https://drive.google.com/drive/folders/1tZeDzry3A_tvqOkarwAq4bfiLimKV8mH" target="_blank">Abrir no Drive</a>
-          </div>
-          <div class="message-box">
-            <textarea readonly>Oi, tudo bem?
+          <span class="chevron">▼</span>
+        </div>
+        <div class="subfront-body">
+          <div class="row"><span class="label">Links</span><a class="link primary" href="https://drive.google.com/drive/folders/1tZeDzry3A_tvqOkarwAq4bfiLimKV8mH" target="_blank">Drive</a><a class="link" href="https://flavio-guedes.github.io/portfolio/designhead.html" target="_blank">Portfólio</a></div>
+          <div class="block"><h4>Fluxo</h4><textarea readonly>1. Abordagem inicial como parceiro estratégico
+2. Apresentação do material no Drive
+3. Proposta de conversa curta para entender desafios de operação/métricas
+4. Follow-up com sugestão de planejamento ou métrica inicial</textarea></div>
+          <div class="block"><h4>Mensagem inicial</h4><textarea readonly>Oi, tudo bem?
 
 Estou me aproximando de empresas que queiram estruturar ou amadurecer a operação de marketing com mais clareza, métricas e resultados previsíveis.
 
 Meu foco não é fornecer um serviço pontual, mas atuar como parceiro estratégico, ajudando a conectar planejamento, funil, métricas, OKRs, conteúdo e execução para construir crescimento com previsibilidade.
 
-Acredito que o melhor resultado aparece quando entendo o cenário do parceiro, seus desafios de marketing e crescimento, e ajudo a transformar esforço em métricas claras e resultados sustentáveis.
-
-Estou aberto a parcerias e colaborações, especialmente com empresas que queiram evoluir a operação de marketing de forma estruturada.
-
 Fiquei curioso para entender melhor o que vocês estão buscando e quais são hoje os principais desafios relacionados a marketing e crescimento.
 
-Dependendo do cenário, posso contribuir na estruturação de planejamento, métricas, operação e identificação de oportunidades de melhoria.
-
 Meu portfólio:
-https://drive.google.com/drive/folders/1tZeDzry3A_tvqOkarwAq4bfiLimKV8mH
+https://flavio-guedes.github.io/portfolio/designhead.html
 
-Flávio</textarea>
-          </div>
+Flávio</textarea></div>
+          <div class="block"><h4>Follow-up</h4><textarea readonly>Oi, tudo bem?
+
+Vi que você movimentou o link e fiquei curioso: hoje vocês têm mais clareza de métricas ou mais dificuldade em transformar planejamento em execução?
+
+Se fizer sentido, podemos conversar por alguns minutos para eu sugerir um primeiro ajuste prático.
+
+Flávio</textarea></div>
         </div>
-        <div class="card">
-          <div class="tag">Vaga</div>
+      </div>
+
+      <div class="subfront">
+        <div class="subfront-header" onclick="toggleSubfront(this)">
           <h3>Account Manager</h3>
-          <p>Relacionamento com cliente, planejamento de conta e CS.</p>
-          <div class="actions">
-            <a class="btn-sm primary" href="https://drive.google.com/drive/folders/15_BgKm3L0Vo3wvEGCT1lUQB2WJypYetP" target="_blank">Abrir no Drive</a>
-          </div>
-          <div class="message-box">
-            <textarea readonly>Oi, tudo bem?
+          <span class="chevron">▼</span>
+        </div>
+        <div class="subfront-body">
+          <div class="row"><span class="label">Links</span><a class="link primary" href="https://drive.google.com/drive/folders/15_BgKm3L0Vo3wvEGCT1lUQB2WJypYetP" target="_blank">Drive</a><a class="link" href="https://flavio-guedes.github.io/portfolio/designhead.html" target="_blank">Portfólio</a></div>
+          <div class="block"><h4>Fluxo</h4><textarea readonly>1. Abordagem inicial como parceiro estratégico
+2. Apresentação do material no Drive
+3. Proposta de conversa curta para entender desafios de CX/CS
+4. Follow-up com sugestão de ação prática para clientes/operações</textarea></div>
+          <div class="block"><h4>Mensagem inicial</h4><textarea readonly>Oi, tudo bem?
 
 Estou me aproximando de empresas que estejam buscando fortalecer a experiência e o relacionamento com seus clientes.
 
 Meu foco não é fornecer um serviço pontual, mas atuar como parceiro estratégico, ajudando a conectar Customer Success, comunicação, estratégia, conteúdo, processos e experiência do cliente para construir relacionamentos duradouros e resultados sustentáveis.
 
-Acredito que o melhor resultado aparece quando entendo o cenário do parceiro, seus desafios com clientes, e ajudo a organizar jornadas, melhorar a comunicação, aumentar engajamento e transformar desafios em ações práticas.
-
-Estou aberto a parcerias e colaborações, especialmente com empresas que queiram evoluir a operação de Customer Success, CX, onboarding, relacionamento ou operações.
-
 Fiquei curioso para entender melhor o que vocês estão buscando e quais são hoje os principais desafios relacionados à experiência e ao sucesso dos clientes.
 
-Dependendo do cenário, posso contribuir no relacionamento e acompanhamento, na estruturação de processos, comunicação com a base, melhoria da jornada e identificação de oportunidades de crescimento e retenção.
-
 Meu portfólio:
-https://drive.google.com/drive/folders/15_BgKm3L0Vo3wvEGCT1lUQB2WJypYetP
+https://flavio-guedes.github.io/portfolio/designhead.html
 
-Flávio</textarea>
-          </div>
+Flávio</textarea></div>
+          <div class="block"><h4>Follow-up</h4><textarea readonly>Oi, tudo bem?
+
+Vi que você movimentou o link e fiquei curioso: hoje o maior desafio é onboarding, retenção ou comunicação com a base?
+
+Se fizer sentido, podemos conversar por alguns minutos para eu sugerir um primeiro ajuste prático na operação.
+
+Flávio</textarea></div>
         </div>
       </div>
     </div>
   </div>
 
-  <div id="tab-ia" class="tab-content" style="display:none;">
-    <div class="section">
+  <div class="front">
+    <div class="front-header" onclick="toggleFront(this)">
       <h2>IA</h2>
-      <div class="grid">
-        <div class="card">
-          <div class="tag">Projeto / Freela</div>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="front-body">
+      <div class="subfront">
+        <div class="subfront-header" onclick="toggleSubfront(this)">
           <h3>IA Aplicada</h3>
-          <p>Cases de uso de IA em conteúdo, design e operações.</p>
-          <div class="actions">
-            <a class="btn-sm primary" href="https://drive.google.com/drive/folders/1NuZaP-_CCR0Q-VdsXsEEcl7oLEw9tQod" target="_blank">Abrir no Drive</a>
-          </div>
-          <div class="message-box">
-            <textarea readonly>Oi, tudo bem?
+          <span class="chevron">▼</span>
+        </div>
+        <div class="subfront-body">
+          <div class="row"><span class="label">Links</span><a class="link primary" href="https://drive.google.com/drive/folders/1NuZaP-_CCR0Q-VdsXsEEcl7oLEw9tQod" target="_blank">Drive</a><a class="link" href="https://flavio-guedes.github.io/portfolio/designhead.html" target="_blank">Portfólio</a></div>
+          <div class="block"><h4>Fluxo</h4><textarea readonly>1. Abordagem inicial como parceiro estratégico
+2. Apresentação do case no Drive
+3. Proposta de conversa curta para entender desafios onde IA pode atuar
+4. Follow-up com sugestão de caso de uso prático</textarea></div>
+          <div class="block"><h4>Mensagem inicial</h4><textarea readonly>Oi, tudo bem?
 
 Estou me aproximando de empresas que queiram usar IA de forma prática para melhorar resultados em conteúdo, operações ou atendimento.
 
 Meu foco não é fornecer um serviço pontual, mas atuar como parceiro estratégico, ajudando a conectar inteligência artificial, conteúdo, processos, comunicação e execução para construir ganhos de escala e eficiência.
 
-Acredito que o melhor resultado aparece quando entendo o cenário do parceiro, seus desafios operacionais, e ajudo a transformar possibilidades em resultados concretos com IA aplicada.
-
-Estou aberto a parcerias e colaborações, especialmente com empresas que queiram evoluir a operação com tecnologia de forma estratégica.
-
 Fiquei curioso para entender melhor o que vocês estão buscando e quais são hoje os principais desafios onde IA pode ajudar.
 
-Dependendo do cenário, posso contribuir na definição de casos de uso, estruturação de fluxos, comunicação e identificação de oportunidades de ganho de escala.
-
 Meu portfólio:
-https://drive.google.com/drive/folders/1NuZaP-_CCR0Q-VdsXsEEcl7oLEw9tQod
+https://flavio-guedes.github.io/portfolio/designhead.html
 
-Flávio</textarea>
-          </div>
+Flávio</textarea></div>
+          <div class="block"><h4>Follow-up</h4><textarea readonly>Oi, tudo bem?
+
+Vi que você movimentou o link e fiquei curioso: onde vocês veem mais potencial agora — conteúdo, atendimento ou operação?
+
+Se fizer sentido, podemos conversar por alguns minutos para eu sugerir um primeiro caso de uso simples.
+
+Flávio</textarea></div>
         </div>
-        <div class="card">
-          <div class="tag">Projeto</div>
+      </div>
+
+      <div class="subfront">
+        <div class="subfront-header" onclick="toggleSubfront(this)">
           <h3>Automação</h3>
-          <p>Automação de processos, fluxos e integração de IA.</p>
-          <div class="actions">
-            <a class="btn-sm primary" href="https://drive.google.com/drive/folders/1SkyEBip0ckp786D9UoHuytWSDASsRpdE" target="_blank">Abrir no Drive</a>
-          </div>
-          <div class="message-box">
-            <textarea readonly>Oi, tudo bem?
+          <span class="chevron">▼</span>
+        </div>
+        <div class="subfront-body">
+          <div class="row"><span class="label">Links</span><a class="link primary" href="https://drive.google.com/drive/folders/1SkyEBip0ckp786D9UoHuytWSDASsRpdE" target="_blank">Drive</a><a class="link" href="https://flavio-guedes.github.io/portfolio/designhead.html" target="_blank">Portfólio</a></div>
+          <div class="block"><h4>Fluxo</h4><textarea readonly>1. Abordagem inicial como parceiro estratégico
+2. Apresentação do material no Drive
+3. Proposta de conversa curta para entender gargalos operacionais
+4. Follow-up com sugestão de automação ou melhoria de processo</textarea></div>
+          <div class="block"><h4>Mensagem inicial</h4><textarea readonly>Oi, tudo bem?
 
 Estou me aproximando de empresas que queiram reduzir retrabalho, dar mais velocidade à operação e eliminar gargalos com automação.
 
 Meu foco não é fornecer um serviço pontual, mas atuar como parceiro estratégico, ajudando a conectar processos, ferramentas, IA, comunicação e execução para construir operações mais eficientes e escaláveis.
 
-Acredito que o melhor resultado aparece quando entendo o cenário do parceiro, seus gargalos, e ajudo a transformar tarefas repetitivas em operações automáticas com foco em resultado.
-
-Estou aberto a parcerias e colaborações, especialmente com empresas que queiram evoluir a operação com automação de forma estratégica.
-
 Fiquei curioso para entender melhor o que vocês estão buscando e quais são hoje os principais desafios relacionados a eficiência e escala.
 
-Dependendo do cenário, posso contribuir no mapeamento de processos, automação de tarefas, comunicação com o time e identificação de oportunidades de melhoria contínua.
-
 Meu portfólio:
-https://drive.google.com/drive/folders/1SkyEBip0ckp786D9UoHuytWSDASsRpdE
+https://flavio-guedes.github.io/portfolio/designhead.html
 
-Flávio</textarea>
-          </div>
+Flávio</textarea></div>
+          <div class="block"><h4>Follow-up</h4><textarea readonly>Oi, tudo bem?
+
+Vi que você movimentou o link e fiquei curioso: qual tarefa ou etapa hoje gera mais retrabalho?
+
+Se fizer sentido, podemos conversar por alguns minutos para eu sugerir um primeiro fluxo de automação prático.
+
+Flávio</textarea></div>
         </div>
       </div>
     </div>
   </div>
 
-  <div id="tab-produto" class="tab-content" style="display:none;">
-    <div class="section">
+  <div class="front">
+    <div class="front-header" onclick="toggleFront(this)">
       <h2>Produto</h2>
-      <div class="grid">
-        <div class="card">
-          <div class="tag">Vaga / Projeto</div>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="front-body">
+      <div class="subfront">
+        <div class="subfront-header" onclick="toggleSubfront(this)">
           <h3>Product Owner</h3>
-          <p>Visão de produto, priorização, backlog e outcomes.</p>
-          <div class="actions">
-            <a class="btn-sm primary" href="https://drive.google.com/drive/folders/1lQLYkp7jw1a_C1cnQI8pH2O6cpTgSQsF" target="_blank">Abrir no Drive</a>
-          </div>
-          <div class="message-box">
-            <textarea readonly>Oi, tudo bem?
+          <span class="chevron">▼</span>
+        </div>
+        <div class="subfront-body">
+          <div class="row"><span class="label">Links</span><a class="link primary" href="https://drive.google.com/drive/folders/1lQLYkp7jw1a_C1cnQI8pH2O6cpTgSQsF" target="_blank">Drive</a><a class="link" href="https://flavio-guedes.github.io/portfolio/designhead.html" target="_blank">Portfólio</a></div>
+          <div class="block"><h4>Fluxo</h4><textarea readonly>1. Abordagem inicial como parceiro estratégico
+2. Apresentação do material no Drive
+3. Proposta de conversa curta para entender desafios de produto/resultado
+4. Follow-up com sugestão de priorização ou visão de produto</textarea></div>
+          <div class="block"><h4>Mensagem inicial</h4><textarea readonly>Oi, tudo bem?
 
 Estou me aproximando de empresas que queiram construir ou amadurecer produtos digitais com mais clareza de valor, priorização e foco em resultado.
 
 Meu foco não é fornecer um serviço pontual, mas atuar como parceiro estratégico, ajudando a conectar produto, estratégia, comunicação, execução e dados para construir evolução contínua.
 
-Acredito que o melhor resultado aparece quando entendo o cenário do parceiro, seus desafios de produto, e ajudo a organizar roadmap, priorizar backlog, melhorar a experiência e transformar ambiguidade em entregas claras.
-
-Estou aberto a parcerias e colaborações, especialmente com empresas que queiram evoluir a gestão de produto de forma estratégica.
-
 Fiquei curioso para entender melhor o que vocês estão buscando e quais são hoje os principais desafios relacionados a produto e crescimento.
 
-Dependendo do cenário, posso contribuir na definição de visão, alinhamento com stakeholders, comunicação e identificação de oportunidades de melhoria.
-
 Meu portfólio:
-https://drive.google.com/drive/folders/1lQLYkp7jw1a_C1cnQI8pH2O6cpTgSQsF
+https://flavio-guedes.github.io/portfolio/designhead.html
 
-Flávio</textarea>
-          </div>
+Flávio</textarea></div>
+          <div class="block"><h4>Follow-up</h4><textarea readonly>Oi, tudo bem?
+
+Vi que você movimentou o link e fiquei curioso: hoje o maior desafio é backlog, visão de produto ou alinhamento com stakeholders?
+
+Se fizer sentido, podemos conversar por alguns minutos para eu sugerir um primeiro ajuste prático.
+
+Flávio</textarea></div>
         </div>
-        <div class="card">
-          <div class="tag">Vaga / Projeto</div>
+      </div>
+
+      <div class="subfront">
+        <div class="subfront-header" onclick="toggleSubfront(this)">
           <h3>Project Manager</h3>
-          <p>Gestão de projetos, cronogramas, riscos e stakeholders.</p>
-          <div class="actions">
-            <a class="btn-sm primary" href="https://drive.google.com/drive/folders/12Ze46odDhKmpThZAA36N_dFBsVCqyya3" target="_blank">Abrir no Drive</a>
-          </div>
-          <div class="message-box">
-            <textarea readonly>Oi, tudo bem?
+          <span class="chevron">▼</span>
+        </div>
+        <div class="subfront-body">
+          <div class="row"><span class="label">Links</span><a class="link primary" href="https://drive.google.com/drive/folders/12Ze46odDhKmpThZAA36N_dFBsVCqyya3" target="_blank">Drive</a><a class="link" href="https://flavio-guedes.github.io/portfolio/designhead.html" target="_blank">Portfólio</a></div>
+          <div class="block"><h4>Fluxo</h4><textarea readonly>1. Abordagem inicial como parceiro estratégico
+2. Apresentação do material no Drive
+3. Proposta de conversa curta para entender desafios de prazos/escopo/execução
+4. Follow-up com sugestão de planejamento ou redução de risco</textarea></div>
+          <div class="block"><h4>Mensagem inicial</h4><textarea readonly>Oi, tudo bem?
 
 Estou me aproximando de empresas que queiram entregar projetos com mais previsibilidade, alinhamento e controle.
 
 Meu foco não é fornecer um serviço pontual, mas atuar como parceiro estratégico, ajudando a conectar gestão de projetos, planejamento, comunicação, riscos e execução para construir entregas seguras e sustentáveis.
 
-Acredito que o melhor resultado aparece quando entendo o cenário do parceiro, seus desafios de execução, e ajudo a organizar cronogramas, reduzir desvios, melhorar a coordenação e transformar complexidade em resultados concretos.
-
-Estou aberto a parcerias e colaborações, especialmente com empresas que queiram evoluir a gestão de projetos de forma estruturada.
-
 Fiquei curioso para entender melhor o que vocês estão buscando e quais são hoje os principais desafios relacionados a prazos, escopo e execução.
 
-Dependendo do cenário, posso contribuir no planejamento, gestão de stakeholders, comunicação e identificação de riscos e oportunidades de melhoria.
-
 Meu portfólio:
-https://drive.google.com/drive/folders/12Ze46odDhKmpThZAA36N_dFBsVCqyya3
+https://flavio-guedes.github.io/portfolio/designhead.html
 
-Flávio</textarea>
-          </div>
+Flávio</textarea></div>
+          <div class="block"><h4>Follow-up</h4><textarea readonly>Oi, tudo bem?
+
+Vi que você movimentou o link e fiquei curioso: hoje o maior desafio é cronograma, escopo ou coordenação do time?
+
+Se fizer sentido, podemos conversar por alguns minutos para eu sugerir um primeiro ajuste prático.
+
+Flávio</textarea></div>
         </div>
-        <div class="card">
-          <div class="tag">Freela / Vaga</div>
+      </div>
+
+      <div class="subfront">
+        <div class="subfront-header" onclick="toggleSubfront(this)">
           <h3>UI / Design de Produto</h3>
-          <p>Interfaces, design systems, prototipação e UX.</p>
-          <div class="actions">
-            <a class="btn-sm primary" href="https://drive.google.com/drive/folders/1keooFEkDJgweuFX2EN8QB5j6kY_TApTK" target="_blank">Abrir no Drive</a>
-          </div>
-          <div class="message-box">
-            <textarea readonly>Oi, tudo bem?
+          <span class="chevron">▼</span>
+        </div>
+        <div class="subfront-body">
+          <div class="row"><span class="label">Links</span><a class="link primary" href="https://drive.google.com/drive/folders/1keooFEkDJgweuFX2EN8QB5j6kY_TApTK" target="_blank">Drive</a><a class="link" href="https://flavio-guedes.github.io/portfolio/designhead.html" target="_blank">Portfólio</a></div>
+          <div class="block"><h4>Fluxo</h4><textarea readonly>1. Abordagem inicial como parceiro estratégico
+2. Apresentação do material no Drive
+3. Proposta de conversa curta para entender desafios de produto/UX
+4. Follow-up com sugestão de interface, design system ou pesquisa</textarea></div>
+          <div class="block"><h4>Mensagem inicial</h4><textarea readonly>Oi, tudo bem?
 
 Estou me aproximando de empresas que queiram melhorar a experiência de uso, a clareza das interfaces e a qualidade dos produtos digitais.
 
 Meu foco não é fornecer um serviço pontual, mas atuar como parceiro estratégico, ajudando a conectar UI, UX, design systems, prototipação, pesquisa e execução para construir produtos mais claros, funcionais e escaláveis.
 
-Acredito que o melhor resultado aparece quando entendo o cenário do parceiro, seus desafios de produto e usuário, e ajudo a organizar telas, melhorar a navegação, aumentar conversão e transformar problemas de usabilidade em soluções práticas.
-
-Estou aberto a parcerias e colaborações, especialmente com empresas que queiram evoluir a experiência do usuário e o design de produto de forma estratégica.
-
 Fiquei curioso para entender melhor o que vocês estão buscando e quais são hoje os principais desafios relacionados a produto e experiência do usuário.
 
-Dependendo do cenário, posso contribuir no design de interfaces, estruturação de design systems, pesquisa com usuários, comunicação e identificação de oportunidades de melhoria.
-
 Meu portfólio:
-https://drive.google.com/drive/folders/1keooFEkDJgweuFX2EN8QB5j6kY_TApTK
+https://flavio-guedes.github.io/portfolio/designhead.html
 
-Flávio</textarea>
-          </div>
+Flávio</textarea></div>
+          <div class="block"><h4>Follow-up</h4><textarea readonly>Oi, tudo bem?
+
+Vi que você movimentou o link e fiquei curioso: hoje o maior desafio é interface, navegação, conversão ou pesquisa com usuários?
+
+Se fizer sentido, podemos conversar por alguns minutos para eu sugerir um primeiro ajuste prático.
+
+Flávio</textarea></div>
         </div>
       </div>
     </div>
   </div>
 
-  <div id="tab-customer-success" class="tab-content" style="display:none;">
-    <div class="section">
+  <div class="front">
+    <div class="front-header" onclick="toggleFront(this)">
       <h2>Customer Success</h2>
-      <div class="grid">
-        <div class="card">
-          <div class="tag">Vaga / Projeto</div>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="front-body">
+      <div class="subfront">
+        <div class="subfront-header" onclick="toggleSubfront(this)">
           <h3>Customer Success</h3>
-          <p>Experiência do cliente, jornada, retenção e sucesso.</p>
-          <div class="actions">
-            <a class="btn-sm primary" href="https://drive.google.com/drive/folders/15_BgKm3L0Vo3wvEGCT1lUQB2WJypYetP" target="_blank">Abrir no Drive</a>
-          </div>
-          <div class="message-box">
-            <textarea readonly>Oi, tudo bem?
+          <span class="chevron">▼</span>
+        </div>
+        <div class="subfront-body">
+          <div class="row"><span class="label">Links</span><a class="link primary" href="https://drive.google.com/drive/folders/15_BgKm3L0Vo3wvEGCT1lUQB2WJypYetP" target="_blank">Drive</a><a class="link" href="https://flavio-guedes.github.io/portfolio/designhead.html" target="_blank">Portfólio</a></div>
+          <div class="block"><h4>Fluxo</h4><textarea readonly>1. Abordagem inicial como parceiro estratégico
+2. Apresentação do material no Drive
+3. Proposta de conversa curta para entender desafios de CX/CS
+4. Follow-up com sugestão de ação prática para jornada, onboarding ou retenção</textarea></div>
+          <div class="block"><h4>Mensagem inicial</h4><textarea readonly>Oi, tudo bem?
 
 Estou me aproximando de empresas que estejam buscando fortalecer a experiência e o relacionamento com seus clientes.
 
 Meu foco não é fornecer um serviço pontual, mas atuar como parceiro estratégico, ajudando a conectar Customer Success, comunicação, estratégia, conteúdo, processos e experiência do cliente para construir relacionamentos duradouros e resultados sustentáveis.
 
-Acredito que o melhor resultado aparece quando entendo o cenário do parceiro, seus desafios com clientes, e ajudo a organizar jornadas, melhorar a comunicação, aumentar engajamento e transformar desafios em ações práticas.
-
-Estou aberto a parcerias e colaborações, especialmente com empresas que queiram evoluir a operação de Customer Success, CX, onboarding, relacionamento ou operações.
-
 Fiquei curioso para entender melhor o que vocês estão buscando e quais são hoje os principais desafios relacionados à experiência e ao sucesso dos clientes.
 
-Dependendo do cenário, posso contribuir não apenas no relacionamento e acompanhamento, mas também na estruturação de processos, comunicação com a base, melhoria da jornada e identificação de oportunidades de crescimento e retenção.
-
 Meu portfólio:
-https://drive.google.com/drive/folders/15_BgKm3L0Vo3wvEGCT1lUQB2WJypYetP
+https://flavio-guedes.github.io/portfolio/designhead.html
 
-Flávio</textarea>
-          </div>
+Flávio</textarea></div>
+          <div class="block"><h4>Follow-up</h4><textarea readonly>Oi, tudo bem?
+
+Vi que você movimentou o link e fiquei curioso: hoje o maior desafio é onboarding, retenção, comunicação com a base ou jornada do cliente?
+
+Se fizer sentido, podemos conversar por alguns minutos para eu sugerir um primeiro ajuste prático.
+
+Flávio</textarea></div>
         </div>
       </div>
     </div>
@@ -420,11 +466,13 @@ Flávio</textarea>
 </div>
 
 <script>
-  function showTab(name) {
-    document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
-    document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
-    document.getElementById('tab-' + name).style.display = '';
-    event.target.classList.add('active');
+  function toggleFront(el) {
+    const front = el.parentElement;
+    front.classList.toggle('open');
+  }
+  function toggleSubfront(el) {
+    const sub = el.parentElement;
+    sub.classList.toggle('open');
   }
 </script>
 </body>
