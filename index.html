@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EPQ · Boulevard de Oportunidades</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>EPQ · Central de Prospecção</title>
 <style>
   :root {
     --bg:#0b1220;
@@ -32,11 +32,11 @@
   header {
     padding: 18px 18px 14px; border-bottom: 1px solid var(--line);
     background: linear-gradient(180deg, rgba(15,23,42,.7), rgba(15,23,42,.4));
-    backdrop-filter: blur(10px);
-    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 50;
   }
   header h1 { font-size: 18px; margin: 0; letter-spacing: .2px; }
   header p { margin: 6px 0 0; color: var(--muted); font-size: 13px; }
+
   .section { margin-top: 22px; }
   .section h2 { font-size: 15px; color: var(--muted); text-transform: uppercase; letter-spacing: .14em; margin: 0 0 10px; }
   .board { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
@@ -49,6 +49,7 @@
   .btn.primary:hover { background: linear-gradient(90deg, #4f8ef7, #8b5cf6); }
   .btn.random { background: linear-gradient(90deg, var(--green), var(--blue)); color: #fff; border-color: transparent; }
   .btn.random:hover { background: linear-gradient(90deg, #10b981, #3b82f6); }
+
   .query {
     margin-top: 10px; padding: 12px; border-radius: 10px; background: rgba(15,23,42,.6); border: 1px solid var(--line); color: var(--muted); font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 12px; line-height: 1.5;
   }
@@ -57,69 +58,182 @@
     display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 10px; font-size: 13px; font-weight: 600; text-decoration: none; border: 1px solid transparent;
   }
   .link.primary { background: rgba(59,130,246,.14); color: #e8f1ff; border-color: rgba(59,130,246,.35); }
+
+  .tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 18px; }
+  .tab {
+    padding: 8px 10px; border-radius: 999px; border: 1px solid var(--line); background: rgba(15,23,42,.6); color: var(--text); font-size: 13px; cursor: pointer; backdrop-filter: blur(10px);
+  }
+  .tab.active { background: rgba(16,185,129,.15); border-color: rgba(16,185,129,.35); color: #d1fae5; font-weight: 700; }
+
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 14px; }
+  @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
+  .card {
+    background: linear-gradient(180deg, rgba(15,23,42,.85), rgba(17,27,45,.75)); border: 1px solid var(--line); border-radius: 18px; padding: 18px; backdrop-filter: blur(10px); display: flex; flex-direction: column; gap: 10px;
+  }
+  .card h3 { margin: 0; font-size: 15px; font-weight: 600; }
+  .card p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
+  .tag {
+    display: inline-flex; padding: 4px 8px; border-radius: 999px; font-size: 11px; font-weight: 700; background: rgba(59,130,246,.12); color: #bfdbfe; border: 1px solid rgba(59,130,246,.25); width: fit-content;
+  }
+  .actions { margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .btn-sm {
+    padding: 7px 10px; border-radius: 10px; border: 1px solid var(--line); background: rgba(255,255,255,0.08); color: var(--text); text-decoration: none; font-size: 12px; backdrop-filter: blur(10px);
+  }
+  .btn-sm.primary { background: rgba(16,185,129,.15); color: #d1fae5; border-color: rgba(16,185,129,.3); }
+
+  .message-box {
+    margin-top: 8px; padding: 10px; border-radius: 12px; background: rgba(15,23,42,.6); border: 1px solid var(--line); color: #cbd5e1; font-size: 12px; line-height: 1.5;
+  }
+  .message-box textarea {
+    width: 100%; min-height: 80px; background: transparent; border: 1px solid var(--line); border-radius: 10px; color: var(--text); padding: 10px; font-size: 12px; resize: vertical; outline: none;
+  }
 </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div>
-        <h1>EPQ · Boulevard de Oportunidades</h1>
-        <p>Clique no cargo para buscar vagas com contato direto no LinkedIn.</p>
-      </div>
-    </header>
+<div class="container">
+  <header>
+    <div>
+      <h1>EPQ · Central de Prospecção</h1>
+      <p>Cases, scripts e mensagens prontas por frente, segmento e tipo de oportunidade.</p>
+    </div>
+  </header>
 
+  <div class="tabs">
+    <button class="tab active" onclick="showTab('marketing')">Marketing</button>
+    <button class="tab" onclick="showTab('ia')">IA</button>
+    <button class="tab" onclick="showTab('produto')">Produto</button>
+  </div>
+
+  <div id="tab-marketing" class="tab-content">
     <div class="section">
-      <h2>Buscar por cargo</h2>
-      <div class="board" id="board">
-        <a class="btn primary" href="https://www.linkedin.com/search/results/content/?keywords=%28%20%22designer%22%20OR%20%22Diretor%20de%20Arte%22%29%20and%20%28%20%22vaga%22%20%29%20AND%20%28%20%22whatsapp%22%20OR%20%22wa.me%22%20%29&origin=FACETED_SEARCH&sortBy=%5B%22date_posted%22%5D" target="_blank" rel="noopener">Designer</a>
-        <a class="btn" href="https://www.linkedin.com/search/results/content/?keywords=%28%20%22Social%20Media%22%20OR%20%22Designer%20Gr%C3%A1fico%22%29%20and%20%28%20%22vaga%22%20%29%20AND%20%28%20%22whatsapp%22%20OR%20%22wa.me%22%20%29&origin=FACETED_SEARCH&sortBy=%5B%22date_posted%22%5D" target="_blank" rel="noopener">Social Media</a>
-        <a class="btn" href="https://www.linkedin.com/search/results/content/?keywords=%28%20%22Art%20Director%22%20OR%20%22Motion%20Designer%22%29%20and%20%28%20%22vaga%22%20%29%20AND%20%28%20%22whatsapp%22%20OR%20%22wa.me%22%20%29&origin=FACETED_SEARCH&sortBy=%5B%22date_posted%22%5D" target="_blank" rel="noopener">Art Director</a>
-        <a class="btn" href="https://www.linkedin.com/search/results/content/?keywords=%28%20%22Diretor%20Criativo%22%20OR%20%22UX%20Designer%22%29%20and%20%28%20%22vaga%22%20%29%20AND%20%28%20%22whatsapp%22%20OR%20%22wa.me%22%20%29&origin=FACETED_SEARCH&sortBy=%5B%22date_posted%22%5D" target="_blank" rel="noopener">Diretor Criativo</a>
-
-        <a class="btn" href="https://www.linkedin.com/search/results/content/?keywords=%28%20%22Customer%20Success%22%20OR%20%22Account%20Management%22%20%29%20and%20%28%20%22vaga%22%20%29%20AND%20%28%20%22whatsapp%22%20OR%20%22wa.me%22%20%29&origin=FACETED_SEARCH&sortBy=%5B%22date_posted%22%5D" target="_blank" rel="noopener">Customer Success</a>
-        <a class="btn" href="https://www.linkedin.com/search/results/content/?keywords=%28%20%22Gest%C3%A3o%20de%20Projetos%22%20OR%20%22Project%20Manager%22%20%29%20and%20%28%20%22vaga%22%20%29%20AND%20%28%20%22whatsapp%22%20OR%20%22wa.me%22%20%29&origin=FACETED_SEARCH&sortBy=%5B%22date_posted%22%5D" target="_blank" rel="noopener">Gestão de Projetos</a>
-        <a class="btn" href="https://www.linkedin.com/search/results/content/?keywords=%28%20%22Copy%22%20OR%20%22Reda%C3%A7%C3%A3o%22%20%29%20and%20%28%20%22vaga%22%20%29%20AND%20%28%20%22whatsapp%22%20OR%20%22wa.me%22%20%29&origin=FACETED_SEARCH&sortBy=%5B%22date_posted%22%5D" target="_blank" rel="noopener">Copy e Redação</a>
-        <a class="btn" href="https://www.linkedin.com/search/results/content/?keywords=%28%20%22Community%20Management%22%20OR%20%22Planejamento%22%20%29%20and%20%28%20%22vaga%22%20%29%20AND%20%28%20%22whatsapp%22%20OR%20%22wa.me%22%20%29&origin=FACETED_SEARCH&sortBy=%5B%22date_posted%22%5D" target="_blank" rel="noopener">Community Management</a>
-        <a class="btn" href="https://www.linkedin.com/search/results/content/?keywords=%28%20%22Gestor%20de%20Tr%C3%A1fego%22%20OR%20%22Head%20de%20Comunica%C3%A7%C3%A3o%22%20%29%20and%20%28%20%22vaga%22%20%29%20AND%20%28%20%22whatsapp%22%20OR%20%22wa.me%22%20%29&origin=FACETED_SEARCH&sortBy=%5B%22date_posted%22%5D" target="_blank" rel="noopener">Gestor de Tráfego</a>
-        <a class="btn" href="https://www.linkedin.com/search/results/content/?keywords=%28%20%22Head%20de%20M%C3%ADdia%22%20OR%20%22Design%20Lead%22%20%29%20and%20%28%20%22vaga%22%20%29%20AND%20%28%20%22whatsapp%22%20OR%20%22wa.me%22%20%29&origin=FACETED_SEARCH&sortBy=%5B%22date_posted%22%5D" target="_blank" rel="noopener">Head de Mídia</a>
-        <a class="btn" href="https://www.linkedin.com/search/results/content/?keywords=%28%20%22Brand%20Manager%22%20OR%20%22Planejamento%20Estrat%C3%A9gico%22%20%29%20and%20%28%20%22vaga%22%20%29%20AND%20%28%20%22whatsapp%22%20OR%20%22wa.me%22%20%29&origin=FACETED_SEARCH&sortBy=%5B%22date_posted%22%5D" target="_blank" rel="noopener">Brand Manager</a>
-
-        <button class="btn random" id="btn-random" type="button">Random</button>
+      <h2>Marketing</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="tag">Freela / Vaga</div>
+          <h3>Campanhas</h3>
+          <p>Cases de campanha digital, social media e performance.</p>
+          <div class="actions">
+            <a class="btn-sm primary" href="https://drive.google.com/drive/folders/1shLgZ_Pc5mSbQ3ryPZWlqcpNaTaQijAA" target="_blank">Abrir no Drive</a>
+          </div>
+          <div class="message-box">
+            <textarea readonly>Olá! Tenho experiência em campanhas digitais e performance. Segue um case prático: https://drive.google.com/drive/folders/1shLgZ_Pc5mSbQ3ryPZWlqcpNaTaQijAA</textarea>
+          </div>
+        </div>
+        <div class="card">
+          <div class="tag">Freela / Vaga</div>
+          <h3>Conteúdo</h3>
+          <p>Conteúdo para blogs, roteiros, e-books e newsletters.</p>
+          <div class="actions">
+            <a class="btn-sm primary" href="https://drive.google.com/drive/folders/1v2caf4wXROVJ_zy5PQ6RZw5BF1UQF1yn" target="_blank">Abrir no Drive</a>
+          </div>
+          <div class="message-box">
+            <textarea readonly>Olá! Trabalho com conteúdo estratégico. Segue um case de conteúdo: https://drive.google.com/drive/folders/1v2caf4wXROVJ_zy5PQ6RZw5BF1UQF1yn</textarea>
+          </div>
+        </div>
+        <div class="card">
+          <div class="tag">Freela / Vaga</div>
+          <h3>Gestão de Marketing</h3>
+          <p>Planejamento, funil, métricas, OKRs e operação de marketing.</p>
+          <div class="actions">
+            <a class="btn-sm primary" href="https://drive.google.com/drive/folders/1tZeDzry3A_tvqOkarwAq4bfiLimKV8mH" target="_blank">Abrir no Drive</a>
+          </div>
+          <div class="message-box">
+            <textarea readonly>Olá! Tenho experiência em gestão de marketing e planejamento. Segue material: https://drive.google.com/drive/folders/1tZeDzry3A_tvqOkarwAq4bfiLimKV8mH</textarea>
+          </div>
+        </div>
+        <div class="card">
+          <div class="tag">Vaga</div>
+          <h3>Account Manager</h3>
+          <p>Relacionamento com cliente, planejamento de conta e CS.</p>
+          <div class="actions">
+            <a class="btn-sm primary" href="https://drive.google.com/drive/folders/15_BgKm3L0Vo3wvEGCT1lUQB2WJypYetP" target="_blank">Abrir no Drive</a>
+          </div>
+          <div class="message-box">
+            <textarea readonly>Olá! Tenho perfil voltado para Account Management e Customer Success. Segue material: https://drive.google.com/drive/folders/15_BgKm3L0Vo3wvEGCT1lUQB2WJypYetP</textarea>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
 
+  <div id="tab-ia" class="tab-content" style="display:none;">
     <div class="section">
-      <h2>Query base</h2>
-      <div class="query">
-        ("designer" OR "Diretor de Arte") and ("vaga") AND ("whatsapp" OR "wa.me")
+      <h2>IA</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="tag">Projeto / Freela</div>
+          <h3>IA Aplicada</h3>
+          <p>Cases de uso de IA em conteúdo, design e operações.</p>
+          <div class="actions">
+            <a class="btn-sm primary" href="https://drive.google.com/drive/folders/1NuZaP-_CCR0Q-VdsXsEEcl7oLEw9tQod" target="_blank">Abrir no Drive</a>
+          </div>
+          <div class="message-box">
+            <textarea readonly>Olá! Tenho aplicado IA em projetos de conteúdo e operações. Segue um case: https://drive.google.com/drive/folders/1NuZaP-_CCR0Q-VdsXsEEcl7oLEw9tQod</textarea>
+          </div>
+        </div>
+        <div class="card">
+          <div class="tag">Projeto</div>
+          <h3>Automação</h3>
+          <p>Automação de processos, fluxos e integração de IA.</p>
+          <div class="actions">
+            <a class="btn-sm primary" href="https://drive.google.com/drive/folders/1SkyEBip0ckp786D9UoHuytWSDASsRpdE" target="_blank">Abrir no Drive</a>
+          </div>
+          <div class="message-box">
+            <textarea readonly>Olá! Tenho experiência com automação e IA aplicada. Segue material: https://drive.google.com/drive/folders/1SkyEBip0ckp786D9UoHuytWSDASsRpdE</textarea>
+          </div>
+        </div>
       </div>
-      <p style="color:var(--muted);font-size:12px;margin-top:8px;">Cada botão altera os cargos e abre a busca diretamente no LinkedIn, ordenada por data de publicação.</p>
     </div>
+  </div>
 
-    <div class="actions">
-      <a class="link primary" href="https://github.com/flavio-guedes/painel-oportunidades" target="_blank" rel="noopener">Abrir repositório</a>
+  <div id="tab-produto" class="tab-content" style="display:none;">
+    <div class="section">
+      <h2>Produto</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="tag">Vaga / Projeto</div>
+          <h3>Product Owner</h3>
+          <p>Visão de produto, priorização, backlog e outcomes.</p>
+          <div class="actions">
+            <a class="btn-sm primary" href="https://drive.google.com/drive/folders/1lQLYkp7jw1a_C1cnQI8pH2O6cpTgSQsF" target="_blank">Abrir no Drive</a>
+          </div>
+          <div class="message-box">
+            <textarea readonly>Olá! Tenho experiência como Product Owner. Segue material: https://drive.google.com/drive/folders/1lQLYkp7jw1a_C1cnQI8pH2O6cpTgSQsF</textarea>
+          </div>
+        </div>
+        <div class="card">
+          <div class="tag">Vaga / Projeto</div>
+          <h3>Project Manager</h3>
+          <p>Gestão de projetos, cronogramas, riscos e stakeholders.</p>
+          <div class="actions">
+            <a class="btn-sm primary" href="https://drive.google.com/drive/folders/12Ze46odDhKmpThZAA36N_dFBsVCqyya3" target="_blank">Abrir no Drive</a>
+          </div>
+          <div class="message-box">
+            <textarea readonly>Olá! Tenho experiência em gestão de projetos. Segue material: https://drive.google.com/drive/folders/12Ze46odDhKmpThZAA36N_dFBsVCqyya3</textarea>
+          </div>
+        </div>
+        <div class="card">
+          <div class="tag">Freela / Vaga</div>
+          <h3>UI / Design de Produto</h3>
+          <p>Interfaces, design systems, prototipação e UX.</p>
+          <div class="actions">
+            <a class="btn-sm primary" href="https://drive.google.com/drive/folders/1keooFEkDJgweuFX2EN8QB5j6kY_TApTK" target="_blank">Abrir no Drive</a>
+          </div>
+          <div class="message-box">
+            <textarea readonly>Olá! Tenho experiência em UI e design de produto. Segue material: https://drive.google.com/drive/folders/1keooFEkDJgweuFX2EN8QB5j6kY_TApTK</textarea>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
   <script>
-    const queries = [
-      'https://www.linkedin.com/search/results/content/?keywords=%28%20%22designer%22%20OR%20%22Diretor%20de%20Arte%22%29%20and%20%28%20%22vaga%22%20%29%20AND%20%28%20%22whatsapp%22%20OR%20%22wa.me%22%20%29&origin=FACETED_SEARCH&sortBy=%5B%22date_posted%22%5D',
-      'https://www.linkedin.com/search/results/content/?keywords=%28%20%22Social%20Media%22%20OR%20%22Designer%20Gr%C3%A1fico%22%29%20and%20%28%20%22vaga%22%20%29%20AND%20%28%20%22whatsapp%22%20OR%20%22wa.me%22%20%29&origin=FACETED_SEARCH&sortBy=%5B%22date_posted%22%5D',
-      'https://www.linkedin.com/search/results/content/?keywords=%28%20%22Art%20Director%22%20OR%20%22Motion%20Designer%22%29%20and%20%28%20%22vaga%22%20%29%20AND%20%28%20%22whatsapp%22%20OR%20%22wa.me%22%20%29&origin=FACETED_SEARCH&sortBy=%5B%22date_posted%22%5D',
-      'https://www.linkedin.com/search/results/content/?keywords=%28%20%22Diretor%20Criativo%22%20OR%20%22UX%20Designer%22%29%20and%20%28%20%22vaga%22%20%29%20AND%20%28%20%22whatsapp%22%20OR%20%22wa.me%22%20%29&origin=FACETED_SEARCH&sortBy=%5B%22date_posted%22%5D',
-      'https://www.linkedin.com/search/results/content/?keywords=%28%20%22Customer%20Success%22%20OR%20%22Account%20Management%22%20%29%20and%20%28%20%22vaga%22%20%29%20AND%20%28%20%22whatsapp%22%20OR%20%22wa.me%22%20%29&origin=FACETED_SEARCH&sortBy=%5B%22date_posted%22%5D',
-      'https://www.linkedin.com/search/results/content/?keywords=%28%20%22Gest%C3%A3o%20de%20Projetos%22%20OR%20%22Project%20Manager%22%20%29%20and%20%28%20%22vaga%22%20%29%20AND%20%28%20%22whatsapp%22%20OR%20%22wa.me%22%20%29&origin=FACETED_SEARCH&sortBy=%5B%22date_posted%22%5D',
-      'https://www.linkedin.com/search/results/content/?keywords=%28%20%22Copy%22%20OR%20%22Reda%C3%A7%C3%A3o%22%20%29%20and%20%28%20%22vaga%22%20%29%20AND%20%28%20%22whatsapp%22%20OR%20%22wa.me%22%20%29&origin=FACETED_SEARCH&sortBy=%5B%22date_posted%22%5D',
-      'https://www.linkedin.com/search/results/content/?keywords=%28%20%22Community%20Management%22%20OR%20%22Planejamento%22%20%29%20and%20%28%20%22vaga%22%20%29%20AND%20%28%20%22whatsapp%22%20OR%20%22wa.me%22%20%29&origin=FACETED_SEARCH&sortBy=%5B%22date_posted%22%5D',
-      'https://www.linkedin.com/search/results/content/?keywords=%28%20%22Gestor%20de%20Tr%C3%A1fego%22%20OR%20%22Head%20de%20Comunica%C3%A7%C3%A3o%22%20%29%20and%20%28%20%22vaga%22%20%29%20AND%20%28%20%22whatsapp%22%20OR%20%22wa.me%22%20%29&origin=FACETED_SEARCH&sortBy=%5B%22date_posted%22%5D',
-      'https://www.linkedin.com/search/results/content/?keywords=%28%20%22Head%20de%20M%C3%ADdia%22%20OR%20%22Design%20Lead%22%20%29%20and%20%28%20%22vaga%22%20%29%20AND%20%28%20%22whatsapp%22%20OR%20%22wa.me%22%20%29&origin=FACETED_SEARCH&sortBy=%5B%22date_posted%22%5D',
-      'https://www.linkedin.com/search/results/content/?keywords=%28%20%22Brand%20Manager%22%20OR%20%22Planejamento%20Estrat%C3%A9gico%22%20%29%20and%20%28%20%22vaga%22%20%29%20AND%20%28%20%22whatsapp%22%20OR%20%22wa.me%22%20%29&origin=FACETED_SEARCH&sortBy=%5B%22date_posted%22%5D'
-    ];
-
-    document.getElementById('btn-random').addEventListener('click', () => {
-      const url = queries[Math.floor(Math.random() * queries.length)];
-      window.open(url, '_blank', 'noopener');
-    });
+    function showTab(name) {
+      document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
+      document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+      document.getElementById('tab-' + name).style.display = '';
+      event.target.classList.add('active');
+    }
   </script>
 </body>
 </html>
